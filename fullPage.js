@@ -13,7 +13,7 @@ function fullPage (target, params) {
   // 监听窗口变化
   window.onresize = function () { onScroll(childrens, childrenRects, params) }
   // 初始化调用
-  onScroll(childrens, childrenRects)
+  onScroll(childrens, childrenRects, params)
 }
 /**
  * 滚动出来函数
@@ -21,9 +21,11 @@ function fullPage (target, params) {
  */
 function onScroll (childrens, childrenRects, params) {
   // 回调函数
-  var callback = params ? params.callback : null
+  var callback = (params && params.callback) ? params.callback : null
   // 返回可见子元素列表
-  var callbackVisibles = params ? params.callbackVisibles : null
+  var callbackVisibles = (params && params.callbackVisibles) ? params.callbackVisibles : null
+  // 获取每个子元素头部出现多少可见区域才算可见（小于1: 按子元素本身高度的百分比计算px, 大于1: 按px进行计算）
+  var callbackVisibleScales = (params && params.callbackVisibleScales) ? params.callbackVisibleScales : function () { return 0 }
   // 窗口滚动范围Y值
   var scrollY = document.documentElement.scrollTop || document.body.scrollTop
   // 窗口高度
@@ -33,9 +35,14 @@ function onScroll (childrens, childrenRects, params) {
   // 可见子元素数组
   var childrenVisibles = []
   // 便利子元素范围
-  childrenRects.forEach(function (item, index) {
+  childrenRects.forEach(function (rect, index) {
+    // 显示多少比例算可见
+    var visibleScale = callbackVisibleScales(index, rect)
+    // 计算可见比例
+    var rectY = rect.y + (visibleScale > 1 ? visibleScale : rect.height * visibleScale)
+    var rectMaxY = rect.maxY
     // 判断是否在显示范围内
-    var isVisible = (item.y >= scrollY && item.y <= scrollMaxY) || (item.maxY >= scrollY && item.maxY <= scrollMaxY) || (scrollY >= item.y && scrollMaxY <= item.maxY) || (scrollMaxY >= item.y && scrollMaxY <= item.maxY)
+    var isVisible = (rectY >= scrollY && rectY <= scrollMaxY) || (rectMaxY >= scrollY && rectMaxY <= scrollMaxY) || (scrollY >= rectY && scrollMaxY <= rectMaxY) || (scrollMaxY >= rectY && scrollMaxY <= rectMaxY)
     // 可见子元素
     if (isVisible) { childrenVisibles.push(index) }
     // 普通回调
