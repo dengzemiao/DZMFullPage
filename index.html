@@ -38,21 +38,32 @@
     var target = document.getElementById('full-page')
     // 监听页码
     fullPage(target, {
-      // 普通回调函数(选一个使用就行了)
-      // callback: function (index, isVisible, childrens) {
-      //   // console.log(index, isVisible, childrens[index])
-      // },
-      // 返回可见子元素列表(选一个使用就行了)
-      callbackVisibles: function (visibles, childrens) {
-        console.log(visibles, childrens)
-      },
+
       // 获取每个子元素头部出现多少可见区域才算可见（小于1: 按子元素本身高度的百分比计算px, 大于1: 按px进行计算，默认为0）
-      // callbackVisibleScales: function (index, rect) {
+      // callbackVisibleHeaderScales: function (index, rect) {
       //   // 按px传入
       //   // return 10
       //   // 按比例传入
-      //   return 0.5
-      // }
+      //   return 0.2
+      // },
+
+      // 获取每个子元素尾部出现多少可见区域才算可见（小于1: 按子元素本身高度的百分比计算px, 大于1: 按px进行计算，默认为0）
+      // callbackVisibleFooterScales: function (index, rect) {
+      //   // 按px传入
+      //   // return 10
+      //   // 按比例传入
+      //   return 0.2
+      // },
+
+      // 回调函数(选一个使用就行了)
+      // callback: function (index, isVisible, childrens) {
+      //   // console.log(index, isVisible, childrens[index])
+      // },
+
+      // 回调函数，返回可见子元素列表(选一个使用就行了)
+      callbackVisibles: function (visibles, childrens) {
+        console.log(visibles, childrens)
+      }
     })
   </script>
 </body>
