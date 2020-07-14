@@ -55,14 +55,14 @@
       //   return 0.2
       // },
 
-      // 回调函数(选一个使用就行了)
-      // callback: function (index, isVisible, childrens) {
-      //   // console.log(index, isVisible, childrens[index])
+      // 回调函数 - 只返回可见子元素列表
+      // callbackVisibles: function (visibleIndexs, childrens) {
+      //   console.log(visibleIndexs, childrens)
       // },
 
-      // 回调函数，返回可见子元素列表(选一个使用就行了)
-      callbackVisibles: function (visibles, childrens) {
-        console.log(visibles, childrens)
+      // 回调函数
+      callback: function (index, isVisible, visibleIndexs, childrens) {
+        console.log(index, isVisible, visibleIndexs, childrens[index])
       }
     })
   </script>
