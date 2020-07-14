@@ -3,7 +3,9 @@
  * @param {*} target 分页主视图
  * @param {*} params 参数
  */
-export function fullPage (target, params) {
+function fullPage (target, params) {
+  // 兼容IE9及以上版本
+  if (!Array.from) { Array.from = function (el) { return Array.apply(this, el) } }
   // 获得所有的子节点
   var childrens = Array.from(target.children)
   // 获取子元素范围值
