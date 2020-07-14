@@ -3,7 +3,7 @@
  * @param {*} target 分页主视图
  * @param {*} params 参数
  */
-function fullPage (target, params) {
+export function fullPage (target, params) {
   // 获得所有的子节点
   var childrens = Array.from(target.children)
   // 获取子元素范围值
@@ -51,7 +51,7 @@ function onScroll (childrens, childrenRects, params) {
     // 获得在可见子元素列表索引
     var indx = visibleIndexs.indexOf(index)
     // 当前子元素可见状态
-    if (isVisible) { 
+    if (isVisible) {
       // 是否存在，不存在则添加
       if (indx === -1) {
         // 添加
@@ -65,9 +65,7 @@ function onScroll (childrens, childrenRects, params) {
         // 移除
         visibleIndexs.splice(indx, 1)
         // 回调
-        if (callback) { 
-          callback(index, isVisible, visibleIndexs, childrens) 
-        }
+        if (callback) { callback(index, isVisible, visibleIndexs, childrens) }
       }
     }
   })
