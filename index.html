@@ -31,6 +31,7 @@
     <!-- 页 -->
     <div style="width: 100%; height: 300px; background-color: yellowgreen;"></div>
   </div>
+  <!-- 导入插件 -->
   <script src="./fullPage.js"></script>
   <script>
     // 获取需要进行监听分页的DOM
@@ -38,9 +39,9 @@
     // 监听页码
     fullPage(target, {
       // 普通回调函数(选一个使用就行了)
-      callback: function (index, isVisible, childrens) {
-        // console.log(index, isVisible, childrens[index])
-      },
+      // callback: function (index, isVisible, childrens) {
+      //   // console.log(index, isVisible, childrens[index])
+      // },
       // 返回可见子元素列表(选一个使用就行了)
       callbackVisibles: function (visibles, childrens) {
         console.log(visibles, childrens)
