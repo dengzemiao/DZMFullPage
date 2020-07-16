@@ -77,9 +77,14 @@ Demo 代码
       //   return 0.2
       // },
 
-      // 回调函数 - 只返回可见子元素列表
+      // 回调函数 - 返回可见子元素列表
       // callbackVisibles: function (visibleIndexs, childrens) {
       //   console.log(visibleIndexs, childrens)
+      // },
+
+      // 回调函数 - 子元素首次显示回调，之后重复显示将不再回调
+      // callbackVisiblesOnce: function (index, isVisible, childrens) {
+      //   console.log(index, isVisible, childrens[index])
       // },
 
       // 回调函数
